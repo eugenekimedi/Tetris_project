@@ -1,18 +1,33 @@
+var Block = require('./models/block');
+
 window.addEventListener('load', function() {
+  var block;
   var canvas = document.getElementById('game-canvas');
-  var context = canvas.getContext('2d');
-  console.log(context);
+  var context = canvas.getContext("2d");
+  block = new Block();
 
-  // var drawCircle = function(x,y) {
-  //   context.beginPath();
-  //   context.arc(x,y,4,0, Math.PI*2, true);
-  //   context.stroke();
-  //   console.log(x,y)
-  // }
-  // drawCircle(200, 20);
+  var update = function() {
+    clear();
 
-  drawBlock = function(x,y) {
-    context.fillRect(x, y, 10, 10)
+    draw();
   }
-  drawBlock(200, 20);
-});
+
+  var clear = function() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  var draw = function() {
+    block.draw(context)
+
+    window.requestAnimationFrame(update);
+  }
+
+  canvas.addEventListener("keydown", function(){
+    block.moveBlock(event, context);
+
+  });
+  console.dir(canvas);
+  window.requestAnimationFrame(update);
+
+    //UI.render() WEEK 3 DAY 2-3
+  });
