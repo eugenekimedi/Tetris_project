@@ -7,10 +7,12 @@ window.addEventListener('load', function() {
     const canvas = document.getElementById('game-canvas');
     const context = canvas.getContext("2d");
     block = new Block(0,0);
+    block2 = new Block(30, 570);
 
     playfield.setBlock(block);
+    playfield.setBlock(block2);
 
-    let fps = 5;
+    let fps = 3;
     let now;
     let then = Date.now();  
     var interval = 1000/fps;
@@ -25,9 +27,11 @@ window.addEventListener('load', function() {
       if(delta > interval) {
         clear();
 
-        // if((block.y + 10) < 500) {
-        //   block.y += 10;
-        // }
+        if(block.y < 570) {
+          playfield.removeBlock(block);
+          block.y += block.side;
+          playfield.setBlock(block);
+        }
 
         draw();  
 

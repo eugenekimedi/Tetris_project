@@ -39,5 +39,9 @@ PlayField.prototype.draw = function(context) {
   }
 }
 
-
+PlayField.prototype.update = function(context, block) {
+  removeBlock(block);
+  setBlock(block);
+  draw(context);
+}
 module.exports = PlayField;
