@@ -1,33 +1,53 @@
-var Block = require('./models/block');
+const Block = require('./models/block');
 
 window.addEventListener('load', function() {
-  var block;
-  var canvas = document.getElementById('game-canvas');
-  var context = canvas.getContext("2d");
-  block = new Block();
+    let block;
+    const canvas = document.getElementById('game-canvas');
+    const context = canvas.getContext("2d");
+    block = new Block();
 
-  var update = function() {
-    clear();
+    let fps = 2;
+    let now;
+    let then = Date.now();  
+    var interval = 1000/fps;
+    let delta;
 
-    draw();
-  }
+    var update = function() {
+      window.requestAnimationFrame(update);
 
-  var clear = function() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-  }
+      now = Date.now();
+      delta = now - then;
 
-  var draw = function() {
-    block.draw(context)
+      if(delta > interval) {
+        clear();
 
+
+
+        if((block.y + 10) < 500) {
+          block.y += 10;
+        }
+
+        draw();  
+
+        then = now - (delta % interval);
+      }
+    }
+
+    var clear = function() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    var draw = function() {
+      block.draw(context)
+    }
+
+    canvas.addEventListener("keydown", function(){
+      clear();
+      block.moveBlock(event, context);
+
+    });
+    console.dir(canvas);
     window.requestAnimationFrame(update);
-  }
-
-  canvas.addEventListener("keydown", function(){
-    block.moveBlock(event, context);
-
-  });
-  console.dir(canvas);
-  window.requestAnimationFrame(update);
 
     //UI.render() WEEK 3 DAY 2-3
   });

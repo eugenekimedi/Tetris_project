@@ -3,5 +3,7 @@
 }
 
 #game-canvas{
-  background-color: yellow;
+  background-color: white;
+  border-color: black;
+  border-style: groove;
 }
