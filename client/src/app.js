@@ -1,10 +1,14 @@
 const Block = require('./models/block');
+const PlayField = require('./models/playfield');
 
 window.addEventListener('load', function() {
+    let playfield = new PlayField();
     let block;
     const canvas = document.getElementById('game-canvas');
     const context = canvas.getContext("2d");
-    block = new Block();
+    block = new Block(0,0);
+
+    playfield.setBlock(block);
 
     let fps = 2;
     let now;
@@ -21,11 +25,9 @@ window.addEventListener('load', function() {
       if(delta > interval) {
         clear();
 
-
-
-        if((block.y + 10) < 500) {
-          block.y += 10;
-        }
+        // if((block.y + 10) < 500) {
+        //   block.y += 10;
+        // }
 
         draw();  
 
@@ -38,13 +40,15 @@ window.addEventListener('load', function() {
     }
 
     var draw = function() {
-      block.draw(context)
+      // block.draw(context, 245, 0);
+      playfield.draw(context);
     }
 
     canvas.addEventListener("keydown", function(){
-      clear();
+      //clear();
+      playfield.removeBlock(block);
       block.moveBlock(event, context);
-
+      playfield.setBlock(block);
     });
     console.dir(canvas);
     window.requestAnimationFrame(update);
