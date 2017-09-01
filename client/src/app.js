@@ -10,7 +10,7 @@ window.addEventListener('load', function() {
 
     playfield.setBlock(block);
 
-    let fps = 2;
+    let fps = 5;
     let now;
     let then = Date.now();  
     var interval = 1000/fps;
@@ -49,6 +49,7 @@ window.addEventListener('load', function() {
       playfield.removeBlock(block);
       block.moveBlock(event, context);
       playfield.setBlock(block);
+      console.log(playfield.board);
     });
     console.dir(canvas);
     window.requestAnimationFrame(update);

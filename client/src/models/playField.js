@@ -13,13 +13,18 @@ function PlayField() {
   }
 };
 
-PlayField.prototype.rem
 
 PlayField.prototype.setBlock = function(block) {
-  const row = block.x / block.side;
-  const col = block.y / block.side;
+  const row = block.y / block.side;
+  const col = block.x / block.side;
 
   this.board[row][col] = block;
+  // console.log(this.board[col]);
+}
+
+
+PlayField.prototype.removeBlock = function(block) {
+  this.board[block.y/block.side][block.x/block.side] = null;
 }
 
 PlayField.prototype.draw = function(context) {
