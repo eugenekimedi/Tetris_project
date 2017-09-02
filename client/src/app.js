@@ -8,7 +8,7 @@ window.addEventListener('load', function() {
     const context = canvas.getContext("2d");
     let blocks = []
     block = new Block(1,0);
-    block2 = new Block(1, 19);
+    block2 = new Block(2,0);
     blocks.push(block);
     blocks.push(block2);
 
@@ -30,12 +30,13 @@ window.addEventListener('load', function() {
       if(delta > interval) {
         clear();
 
+        for(let block of blocks) {
         if(block.y < 570) {
           playfield.removeBlock(block);
           block.y += block.side;
           playfield.setBlock(block);
         }
-
+      }
         draw();  
 
         then = now - (delta % interval);
