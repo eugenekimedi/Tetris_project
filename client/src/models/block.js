@@ -6,7 +6,7 @@ function Block(col, row) {
   this.y = this.row * this.side;
   this.dx = this.side;
   this.dy = this.side;
-  this.isMoving = true;
+  this.canMove = true;
 }
 
 
@@ -14,7 +14,7 @@ Block.prototype.draw = function(context, x, y) {
   context.fillRect(x, y, this.side, this.side)
 }
 
-Block.prototype.moveBlock = function(event, context) {
+Block.prototype.moveBlock = function(event) {
   // console.log(event)
   // context.clearRect(this.x, this.y, this.side, this.side)
   switch (event.keyCode) {
@@ -36,7 +36,7 @@ Block.prototype.moveBlock = function(event, context) {
   };
 }
 
-Block.prototype.stop = function() {
+Block.prototype.checkBelow = function() {
 
 }
 
