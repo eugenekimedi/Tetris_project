@@ -6,13 +6,16 @@ window.addEventListener('load', function() {
     let block;
     const canvas = document.getElementById('game-canvas');
     const context = canvas.getContext("2d");
-    block = new Block(0,0);
-    block2 = new Block(30, 570);
+    let blocks = []
+    block = new Block(1,0);
+    block2 = new Block(1, 19);
+    blocks.push(block);
+    blocks.push(block2);
 
     playfield.setBlock(block);
     playfield.setBlock(block2);
 
-    let fps = 3;
+    let fps = 4;
     let now;
     let then = Date.now();  
     var interval = 1000/fps;
@@ -50,10 +53,12 @@ window.addEventListener('load', function() {
 
     canvas.addEventListener("keydown", function(){
       //clear();
+      for(let block of blocks) {
       playfield.removeBlock(block);
       block.moveBlock(event, context);
       playfield.setBlock(block);
       console.log(playfield.board);
+    }
     });
     console.dir(canvas);
     window.requestAnimationFrame(update);

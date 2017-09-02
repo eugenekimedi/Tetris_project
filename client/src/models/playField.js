@@ -17,9 +17,12 @@ function PlayField() {
 PlayField.prototype.setBlock = function(block) {
   const row = block.y / block.side;
   const col = block.x / block.side;
+  block.row = row;
+  block.col = col;
+  console.log(block.row)
 
   this.board[row][col] = block;
-  // console.log(this.board[col]);
+
 }
 
 

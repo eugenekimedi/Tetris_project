@@ -1,8 +1,9 @@
-function Block(x, y) {
-  this.x = x;
-  this.y = y;
-  this.coords = [this.x, this.y]
+function Block(col, row) {
   this.side = 30;
+  this.row = row;
+  this.col = col;
+  this.x = this.col * this.side;
+  this.y = this.row * this.side;
   this.dx = this.side;
   this.dy = this.side;
   this.isMoving = true;
@@ -35,6 +36,8 @@ Block.prototype.moveBlock = function(event, context) {
   };
 }
 
-// Block.prototype.checkOut = function()
+Block.prototype.stop = function() {
+
+}
 
 module.exports = Block;
