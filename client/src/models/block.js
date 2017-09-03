@@ -41,16 +41,9 @@ Block.prototype.moveBlock = function(event) {
 Block.prototype.checkBelow = function(playfield) {
   if(this.row < 19){
     if(playfield.board[this.row+1][this.col]){
+      console.log("yay")
       this.canMove = false;
-    } else {
-      this.canMove = true;
     }
-  }
-}
-
-Block.prototype.checkHitBottom = function() {
-  if(this.row === 19) {
-    this.canMove = false;
   }
 }
 

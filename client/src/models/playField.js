@@ -13,16 +13,16 @@ function PlayField() {
   }
 };
 
-PlayField.prototype.gameOver = function(block) {
-  if (block.row === 0 && block.canMove === false){
-    for(var i=0; i< 20; i++) {
-      let row = [];
-      for(var j=0; j<10; j++) {
-        row.push(null);
-      }
 
-      this.board.push(row);
-  }
+PlayField.prototype.setBlock = function(block) {
+  const row = block.y / block.side;
+  const col = block.x / block.side;
+  block.row = row;
+  block.col = col;
+  // console.log(this.board[20][1])
+
+  this.board[row][col] = block;
+
 }
 
 
