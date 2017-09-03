@@ -47,4 +47,10 @@ Block.prototype.checkBelow = function(playfield) {
   }
 }
 
+Block.prototype.checkHitBottom = function() {
+  if(this.row === 19) {
+    this.canMove = false;
+  }
+}
+
 module.exports = Block;
