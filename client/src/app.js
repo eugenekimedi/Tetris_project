@@ -7,19 +7,20 @@ window.addEventListener('load', function() {
   const canvas = document.getElementById('game-canvas');
   const context = canvas.getContext("2d");
   let blocks = []
-  block = new Block(1,0);
-  block2 = new Block(2,0);
+  block = new Block(4,0);
+  block2 = new Block(4,19);
   blocks.push(block);
   blocks.push(block2);
 
   playfield.setBlock(block);
   playfield.setBlock(block2);
 
-  let fps = 1;
+  let fps = 5;
   let now;
   let then = Date.now();  
   var interval = 1000/fps;
   let delta;
+  let counter = 0;
 
   var update = function() {
     window.requestAnimationFrame(update);
@@ -29,16 +30,20 @@ window.addEventListener('load', function() {
 
     if(delta > interval) {
       clear();
-
+      if(counter > 2) {
       for(let block of blocks) {
         if(block.canMove == true){
           if(block.y < 570) {
+            // block.checkBelow(playfield);
             playfield.removeBlock(block);
             block.y += block.side;
             playfield.setBlock(block);
           }
         }
       }
+      counter = 0;
+    }
+    counter++;
       draw();  
 
       then = now - (delta % interval);
@@ -56,6 +61,7 @@ window.addEventListener('load', function() {
     canvas.addEventListener("keydown", function(){
 
       for(let block of blocks) {
+        // block.checkBelow(playfield);
         playfield.removeBlock(block);
         block.moveBlock(event, context);
         playfield.setBlock(block);

@@ -36,8 +36,10 @@ Block.prototype.moveBlock = function(event) {
   };
 }
 
-Block.prototype.checkBelow = function() {
-
+Block.prototype.checkBelow = function(playfield) {
+  if (playfield.board[this.col][this.row + 1] != null) {
+    this.canMove = false;
+  }
 }
 
 module.exports = Block;

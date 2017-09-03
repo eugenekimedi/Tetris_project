@@ -19,7 +19,7 @@ PlayField.prototype.setBlock = function(block) {
   const col = block.x / block.side;
   block.row = row;
   block.col = col;
-  console.log(block.row)
+  // console.log(this.board[20][1])
 
   this.board[row][col] = block;
 
