@@ -40,11 +40,11 @@ Block.prototype.moveBlock = function(event) {
 
 Block.prototype.checkBelow = function(playfield) {
   if(this.row < 19){
-  if(playfield.board[this.row+1][this.col]){
-    console.log("yay")
-    this.canMove = false;
+    if(playfield.board[this.row+1][this.col]){
+      console.log("yay")
+      this.canMove = false;
+    }
   }
-}
 }
 
 module.exports = Block;
