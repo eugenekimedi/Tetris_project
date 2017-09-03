@@ -7,14 +7,6 @@ window.addEventListener('load', function() {
   const canvas = document.getElementById('game-canvas');
   const context = canvas.getContext("2d");
   let blocks = []
-  // block = new Block(4,0);
-  let block2 = new Block(4,19);
-  block2.canMove = false;
-  // blocks.push(block);
-  blocks.push(block2);
-
-  // playfield.setBlock(block);
-  playfield.setBlock(block2);
 
   let fps = 5;
   let now;
@@ -34,6 +26,7 @@ window.addEventListener('load', function() {
       if(counter > 1) {
         for(let block of blocks) {
             block.checkBelow(playfield);
+            block.checkHitBottom();
           if(block.canMove == true){
             if(block.y < 570) {
             // block.checkBelow(playfield);
