@@ -8,7 +8,7 @@ window.addEventListener('load', function() {
   const context = canvas.getContext("2d");
   let blocks = []
 
-  let fps = 15;
+  let fps = 5;
   let now;
   let then = Date.now();  
   var interval = 1000/fps;
@@ -22,12 +22,10 @@ window.addEventListener('load', function() {
     delta = now - then;
 
     if(delta > interval) {
-
       clear();
       if(counter > 1) {
         for(let block of blocks) {
             block.checkBelow(playfield);
-          if(playfield.gameOver(block)){draw(); return;}
             block.checkHitBottom();
           if(block.canMove == true){
             if(block.y < 570) {
