@@ -16,7 +16,7 @@ window.addEventListener('load', function() {
   // playfield.setBlock(block);
   playfield.setBlock(block2);
 
-  let fps = 5;
+  let fps = 15;
   let now;
   let then = Date.now();  
   var interval = 1000/fps;
@@ -30,10 +30,13 @@ window.addEventListener('load', function() {
     delta = now - then;
 
     if(delta > interval) {
+
       clear();
       if(counter > 1) {
         for(let block of blocks) {
             block.checkBelow(playfield);
+            block.checkHitBottom();
+
           if(block.canMove == true){
             if(block.y < 570) {
             // block.checkBelow(playfield);

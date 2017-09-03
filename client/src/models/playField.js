@@ -13,6 +13,32 @@ function PlayField() {
   }
 };
 
+<<<<<<< HEAD
+
+PlayField.prototype.setBlock = function(block) {
+  const row = block.y / block.side;
+  const col = block.x / block.side;
+  block.row = row;
+  block.col = col;
+  // console.log(this.board[20][1])
+
+  this.board[row][col] = block;
+
+=======
+PlayField.prototype.gameOver = function(block) {
+  if (block.row === 0 && block.canMove === false){
+  this.board = []
+    for(var i=0; i< 20; i++) {
+      let row = [];
+      for(var j=0; j<10; j++) {
+        row.push(block);
+      }
+
+      this.board.push(row);
+    }
+  }
+>>>>>>> parent of b47dd10... Revert "Added GameOver"
+}
 
 PlayField.prototype.setBlock = function(block) {
   const row = block.y / block.side;
@@ -47,4 +73,5 @@ PlayField.prototype.update = function(context, block) {
   setBlock(block);
   draw(context);
 }
+
 module.exports = PlayField;
