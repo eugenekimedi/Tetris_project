@@ -9,6 +9,7 @@ window.addEventListener('load', function() {
   let blocks = []
   block = new Block(4,0);
   block2 = new Block(4,19);
+  block2.canMove = false;
   blocks.push(block);
   blocks.push(block2);
 
@@ -30,10 +31,10 @@ window.addEventListener('load', function() {
 
     if(delta > interval) {
       clear();
-      if(counter > 2) {
-      for(let block of blocks) {
-        if(block.canMove == true){
-          if(block.y < 570) {
+      if(counter > 3) {
+        for(let block of blocks) {
+          if(block.canMove == true){
+            if(block.y < 570) {
             // block.checkBelow(playfield);
             playfield.removeBlock(block);
             block.y += block.side;
@@ -44,31 +45,32 @@ window.addEventListener('load', function() {
       counter = 0;
     }
     counter++;
-      draw();  
+    draw();  
 
-      then = now - (delta % interval);
-    }
+    then = now - (delta % interval);
   }
+}
 
-  var clear = function() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-  }
+var clear = function() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+}
 
-  var draw = function() {
-      playfield.draw(context);
-    }
+var draw = function() {
+  playfield.draw(context);
+}
 
-    canvas.addEventListener("keydown", function(){
+canvas.addEventListener("keydown", function(){
 
-      for(let block of blocks) {
-        // block.checkBelow(playfield);
+  for(let block of blocks) {
+    if(block.canMove == true){
         playfield.removeBlock(block);
         block.moveBlock(event, context);
         playfield.setBlock(block);
-        console.log(playfield.board);
+        // console.log(playfield.board);
       }
-    });
-
-    console.dir(canvas);
-    window.requestAnimationFrame(update);
+    }
   });
+
+console.dir(canvas);
+window.requestAnimationFrame(update);
+});
