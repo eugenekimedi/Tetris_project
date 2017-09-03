@@ -38,9 +38,9 @@ Block.prototype.moveBlock = function(event) {
 }
 }
 
-Block.prototype.checkBelow = function() {
-  if (this.row = 19) {
-    console.log(this);
+Block.prototype.checkBelow = function(playfield) {
+  if(playfield.board[this.row+1][this.col] != null){
+    console.log("yay")
     this.canMove = false;
   }
 }

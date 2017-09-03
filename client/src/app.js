@@ -8,7 +8,7 @@ window.addEventListener('load', function() {
   const context = canvas.getContext("2d");
   let blocks = []
   block = new Block(4,0);
-  block2 = new Block(4,19);
+  block2 = new Block(4,8);
   block2.canMove = false;
   blocks.push(block);
   blocks.push(block2);
@@ -31,8 +31,9 @@ window.addEventListener('load', function() {
 
     if(delta > interval) {
       clear();
-      if(counter > 3) {
+      if(counter > 1) {
         for(let block of blocks) {
+            block.checkBelow(playfield);
           if(block.canMove == true){
             if(block.y < 570) {
             // block.checkBelow(playfield);
