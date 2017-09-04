@@ -66,6 +66,7 @@ var spawnBlock = function(blocks) {
   }
   if (stuckBlocks.length === blocks.length) {
     let block = new Block(4,0);
+    // let piece = new Piece("tShape")
     playfield.setBlock(block);
     blocks.push(block);
   }
@@ -75,7 +76,7 @@ canvas.addEventListener("keydown", function(){
   for(let block of blocks) {
     if(block.canMove == true){
         playfield.removeBlock(block);
-        block.moveBlock(event, context);
+        block.moveBlock(event, playfield);
         playfield.setBlock(block);
       }
     }

@@ -14,17 +14,23 @@ Block.prototype.draw = function(context, x, y) {
   context.fillRect(x, y, this.side, this.side)
 }
 
-Block.prototype.moveBlock = function(event) {
+Block.prototype.moveBlock = function(event, playfield) {
   if(this.canMove == true){
   switch (event.keyCode) {
     case 37: //left
     if(this.x != 0) {
-      this.x -= this.dx;}
+      if(this.checkSide(playfield, -1) == true){
+        this.x -= this.dx;
+      }
+    }
       break;
 
     case 39: //right
     if(this.x != 270) {
-      this.x += this.dx;}
+      if(this.checkSide(playfield, +1) == true){
+        this.x += this.dx;
+      }
+    }
       break;
 
     case 40: //down
@@ -48,5 +54,14 @@ Block.prototype.checkHitBottom = function() {
     this.canMove = false;
   }
 }
+
+Block.prototype.checkSide = function(playfield,direction) {
+  if(playfield.board[this.row][this.col + direction]){
+    return false;
+  } else {
+    return true;
+  }
+}
+
 
 module.exports = Block;
