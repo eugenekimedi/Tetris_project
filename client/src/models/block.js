@@ -35,7 +35,10 @@ Block.prototype.moveBlock = function(event, playfield) {
 
     case 40: //down
     if(this.y < 570) {
-      this.y += this.dy;}
+      if(this.checkBelow(playfield) == true){
+        this.y += this.dy;
+      }
+    }
       break;
   };
 }
@@ -45,6 +48,9 @@ Block.prototype.checkBelow = function(playfield) {
   if(this.row < 19){
     if(playfield.board[this.row+1][this.col]){
       this.canMove = false;
+      return false;
+    } else {
+      return true;
     }
   }
 }

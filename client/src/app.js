@@ -32,7 +32,6 @@ window.addEventListener('load', function() {
             playfield.gameOver(block);
           if(block.canMove == true){
             if(block.y < 570) {
-
               playfield.removeBlock(block);
               block.y += block.side;
               playfield.setBlock(block);
