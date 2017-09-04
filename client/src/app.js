@@ -9,7 +9,7 @@ window.addEventListener('load', function() {
   let blocks = []
 
 
-  let fps = 15;
+  let fps = 60;
   let now;
   let then = Date.now();  
   var interval = 1000/fps;
@@ -25,29 +25,29 @@ window.addEventListener('load', function() {
     if(delta > interval) {
 
       clear();
-      if(counter > 1) {
+      if(counter > 10) {
         for(let block of blocks) {
             block.checkBelow(playfield);
             block.checkHitBottom();
-
+            playfield.gameOver(block);
           if(block.canMove == true){
             if(block.y < 570) {
-            // block.checkBelow(playfield);
-            playfield.removeBlock(block);
-            block.y += block.side;
-            playfield.setBlock(block);
+
+              playfield.removeBlock(block);
+              block.y += block.side;
+              playfield.setBlock(block);
+            }
           }
         }
-      }
       counter = 0;
-    }
-    counter++;
-    spawnBlock(blocks);
-    draw();  
+      }
+      counter++;
+      spawnBlock(blocks);
+      draw();  
 
-    then = now - (delta % interval);
+      then = now - (delta % interval);
+    }
   }
-}
 
 var clear = function() {
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -77,7 +77,6 @@ canvas.addEventListener("keydown", function(){
         playfield.removeBlock(block);
         block.moveBlock(event, context);
         playfield.setBlock(block);
-        // console.log(playfield.board);
       }
     }
   });
