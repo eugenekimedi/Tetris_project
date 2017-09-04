@@ -67,7 +67,7 @@ var spawnBlock = function(blocks) {
     }
   }
   if (stuckBlocks.length === blocks.length) {
-    const piece = new Piece("lineShape");
+    piece = new Piece("lineShape");
     // let piece = new Piece("tShape")
     playfield.setBlocks(piece.blocks);
     blocks.push(...piece.blocks);
@@ -75,13 +75,12 @@ var spawnBlock = function(blocks) {
 }
 canvas.addEventListener("keydown", function(){
 
-  for(let block of blocks) {
-    if(block.canMove == true){
-        playfield.removeBlock(block);
-        block.moveBlock(event, playfield);
-        playfield.setBlocks([block]);
+
+    if(piece.canMove()){
+      piece.removeBlocks(playfield);
+      piece.movePiece(event, playfield);
+      piece.setBlocks(playfield);
       }
-    }
   });
 
 console.dir(canvas);
