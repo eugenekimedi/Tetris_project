@@ -1,9 +1,11 @@
 const Block = require('./models/block');
 const PlayField = require('./models/playfield');
+const Piece = require('./models/piece');
 
 window.addEventListener('load', function() {
   let playfield = new PlayField();
   let block;
+  let piece;
   const canvas = document.getElementById('game-canvas');
   const context = canvas.getContext("2d");
   let blocks = []
@@ -17,8 +19,9 @@ window.addEventListener('load', function() {
   let counter = 0;
 
   var update = function() {
-    window.requestAnimationFrame(update);
-
+    if(!playfield.gameOver()){
+      requestAnimationFrame(update);
+    }
     now = Date.now();
     delta = now - then;
 
@@ -30,12 +33,11 @@ window.addEventListener('load', function() {
             block.checkBelow(playfield);
             block.checkHitBottom();
             playfield.checkLines(context, block);
-            playfield.gameOver(block);
           if(block.canMove == true){
             if(block.y < 570) {
               playfield.removeBlock(block);
               block.y += block.side;
-              playfield.setBlock(block);
+              playfield.setBlocks([block]);
             }
           }
         }
@@ -65,10 +67,10 @@ var spawnBlock = function(blocks) {
     }
   }
   if (stuckBlocks.length === blocks.length) {
-    let block = new Block(4,0);
+    const piece = new Piece("lineShape");
     // let piece = new Piece("tShape")
-    playfield.setBlock(block);
-    blocks.push(block);
+    playfield.setBlocks(piece.blocks);
+    blocks.push(...piece.blocks);
   }
 }
 canvas.addEventListener("keydown", function(){
@@ -77,11 +79,14 @@ canvas.addEventListener("keydown", function(){
     if(block.canMove == true){
         playfield.removeBlock(block);
         block.moveBlock(event, playfield);
-        playfield.setBlock(block);
+        playfield.setBlocks([block]);
       }
     }
   });
 
 console.dir(canvas);
-window.requestAnimationFrame(update);
+
+
+requestAnimationFrame(update);
+
 });

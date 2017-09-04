@@ -14,7 +14,8 @@ function PlayField() {
 };
 
 
-PlayField.prototype.setBlock = function(block) {
+PlayField.prototype.setBlocks = function(blocks) {
+  blocks.forEach((block) => {
   const row = block.y / block.side;
   const col = block.x / block.side;
   block.row = row;
@@ -22,21 +23,18 @@ PlayField.prototype.setBlock = function(block) {
   // console.log(this.board[20][1])
 
   this.board[row][col] = block;
+  })
 }
 
 
-PlayField.prototype.gameOver = function(block) {
-  if (block.row === 0 && block.canMove === false){
-  this.board = []
-    for(var i=0; i< 20; i++) {
-      let row = [];
-      for(var j=0; j<10; j++) {
-        row.push(block);
-      }
+PlayField.prototype.gameOver = function() {
+  const anythingInTopRow = this.board[0].some(function(space) {
+    return (space && !space.canMove);
+  });
 
-      this.board.push(row);
-    }
-  }
+  console.log(anythingInTopRow);
+
+  return anythingInTopRow;
 }
 
 
