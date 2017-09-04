@@ -22,6 +22,7 @@ PlayField.prototype.setBlock = function(block) {
   // console.log(this.board[20][1])
 
   this.board[row][col] = block;
+}
 
 
 PlayField.prototype.gameOver = function(block) {
@@ -62,6 +63,24 @@ PlayField.prototype.update = function(context, block) {
   draw(context);
 }
 
+PlayField.prototype.checkLines = function(context) {
+  let isFull = function(thing) {
+    if(thing) {
+      return true;
+    }
+  }
+  let counter = 0
+  for(let row of this.board){
+    if(row.every(isFull)){
+      let newRow = [null, null, null, null, null, null, null, null, null, null]
+      this.board.splice(counter, 1);
+      this.board.unshift(newRow);
+      console.log("yay")
+      this.draw(context);
+    }
+      counter++
+  }
 }
+
 
 module.exports = PlayField;

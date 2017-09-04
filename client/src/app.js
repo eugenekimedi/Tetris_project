@@ -30,6 +30,7 @@ window.addEventListener('load', function() {
             block.checkBelow(playfield);
             block.checkHitBottom();
             playfield.gameOver(block);
+            playfield.checkLines(context, block);
           if(block.canMove == true){
             if(block.y < 570) {
               playfield.removeBlock(block);
