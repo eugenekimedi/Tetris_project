@@ -29,8 +29,8 @@ window.addEventListener('load', function() {
         for(let block of blocks) {
             block.checkBelow(playfield);
             block.checkHitBottom();
-            playfield.gameOver(block);
             playfield.checkLines(context, block);
+            playfield.gameOver(block);
           if(block.canMove == true){
             if(block.y < 570) {
               playfield.removeBlock(block);
