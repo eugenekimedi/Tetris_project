@@ -33,7 +33,7 @@ window.addEventListener('load', function() {
             block.checkBelow(playfield);
             block.checkHitBottom();
             playfield.checkLines(context, block);
-          if(block.canMove == true){
+          if(block.canFall == true){
             if(block.y < 570) {
               playfield.removeBlock(block);
               block.y += block.side;
@@ -62,7 +62,7 @@ var draw = function() {
 var spawnBlock = function(blocks) {
   let stuckBlocks = [];
   for (block of blocks) {
-    if(block.canMove === false) {
+    if(block.canFall === false) {
       stuckBlocks.push(block);
     }
   }
@@ -74,8 +74,6 @@ var spawnBlock = function(blocks) {
   }
 }
 canvas.addEventListener("keydown", function(){
-
-
     if(piece.canMove()){
       piece.removeBlocks(playfield);
       piece.movePiece(event, playfield);

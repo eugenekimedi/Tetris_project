@@ -29,7 +29,7 @@ PlayField.prototype.setBlocks = function(blocks) {
 
 PlayField.prototype.gameOver = function() {
   const anythingInTopRow = this.board[0].some(function(space) {
-    return (space && !space.canMove);
+    return (space && !space.canFall);
   });
 
   console.log(anythingInTopRow);

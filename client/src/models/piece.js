@@ -20,7 +20,7 @@ Piece.prototype.createBlocks = function() {
 };
 
 Piece.prototype.canMove = function () {
-  return this.blocks.some(block => block.canMove)
+  return this.blocks.some(block => block.canFall)
 }
 
 Piece.prototype.removeBlocks = function (playfield) {
@@ -32,7 +32,7 @@ Piece.prototype.setBlocks = function(playfield) {
 }
 
 Piece.prototype.movePiece = function(event, playfield) {
-  const someCanMove = this.blocks.some(block => block.canMove)
+  const someCanMove = this.blocks.some(block => block.canFall)
 
   if(someCanMove){
   switch (event.keyCode) {
