@@ -74,7 +74,7 @@ var spawnBlock = function(blocks) {
   }
 }
 canvas.addEventListener("keydown", function(){
-    if(piece.canMove()){
+    if(piece.canFall()){
       piece.removeBlocks(playfield);
       piece.movePiece(event, playfield);
       piece.setBlocks(playfield);

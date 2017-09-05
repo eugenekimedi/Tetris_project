@@ -19,7 +19,7 @@ Piece.prototype.createBlocks = function() {
   this.blocks = [block1, block2,block3, block4];
 };
 
-Piece.prototype.canMove = function () {
+Piece.prototype.canFall = function () {
   return this.blocks.some(block => block.canFall)
 }
 

@@ -6,7 +6,7 @@ function Block(col, row) {
   this.y = this.row * this.side;
   this.dx = this.side;
   this.dy = this.side;
-  // this.canMove = true;
+  this.canMove = true;
   this.canFall = true
 }
 
