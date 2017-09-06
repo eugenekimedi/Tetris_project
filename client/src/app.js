@@ -19,16 +19,13 @@ window.addEventListener('load', function() {
   let counter = 0;
 
   var update = function() {
-    if(!checkGameOver()){
-      requestAnimationFrame(update);
-    }
     now = Date.now();
     delta = now - then;
 
 
     if(delta > interval) {
       clear();
-      console.log(1)
+    
       if(counter > 10) {
         for(let block of blocks) {
             // block.checkBelow(playfield);
@@ -50,8 +47,11 @@ window.addEventListener('load', function() {
 
       then = now - (delta % interval);
     }
+    if(!checkGameOver()){
+      requestAnimationFrame(update);
+    }
   }
-
+//renderer object
 var clear = function() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 }
@@ -59,7 +59,7 @@ var clear = function() {
 var draw = function() {
   playfield.draw(context);
 }
-
+//playfield
 var checkGameOver = function() {
   const anythingInTopRow = playfield.board[0].some(function(space) {
     return (space && !space.canMove("D", playfield));
@@ -83,8 +83,8 @@ var spawnBlock = function(blocks) {
     blocks.push(...piece.blocks);
   }
 }
-canvas.addEventListener("keydown", function(){
-    if(piece.canFall){
+canvas.addEventListener("keydown", function(event){
+    if(piece.checkCanMove("D", playfield)){
       piece.removeBlocks(playfield);
       piece.movePiece(event, playfield);
       piece.setBlocks(playfield);
