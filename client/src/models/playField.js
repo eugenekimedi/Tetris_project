@@ -27,15 +27,15 @@ PlayField.prototype.setBlocks = function(blocks) {
 }
 
 
-PlayField.prototype.gameOver = function() {
-  const anythingInTopRow = this.board[0].some(function(space) {
-    return (space && !space.canFall);
-  });
+// PlayField.prototype.gameOver = function() {
+//   const anythingInTopRow = this.board[0].some(function(space) {
+//     return (space && !space.canMove("D", this));
+//   });
 
-  console.log(anythingInTopRow);
+//   console.log(anythingInTopRow);
 
-  return anythingInTopRow;
-}
+//   return anythingInTopRow;
+// }
 
 
 
